@@ -1,0 +1,7 @@
+node_modules
+# Ignore built files and installers
+/dist/
+*.zip
+*.dmg
+*.exe
+*.asar

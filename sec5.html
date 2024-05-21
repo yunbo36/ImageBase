@@ -1,0 +1,276 @@
+<div id="sec5">
+    <div class="row">
+        <div class="item w100p" id="sec5-contents">
+            <form id="search-fields" onsubmit="return jsSec5.searchMedicalHistory();">
+                <div class="row">
+                    <div class="item w15p">
+                        <h4>患者ID</h4>
+                        <input type="text" class="inp-data" id="sec5-patientId" tabindex="0">
+                        <input type="submit" value="Search" id="sec5-search-btn" class="btn btn-info">
+                    </div>
+                    <div class="item w15p">
+                        <h4>性</h4>
+                        <p id="sec5-lastName"></p>
+                    </div>
+                    <div class="item w15p">
+                        <h4>名</h4>
+                        <p id="sec5-firstName"></p>
+                    </div>
+                    <div class="item w12p">
+                        <h4>生年月日</h4>
+                        <p id="sec5-birthday"></p>
+                    </div>
+                    <div class="item w10p">
+                        <h4>年齢</h4>
+                        <p id="sec5-age"></p>
+                    </div>
+                    <div class="item w15p">
+                        <h4>月齢</h4>
+                        <p id="sec5-monthAge"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item w15p">
+                        <h4>性別</h4>
+                        <p id="sec5-sex"></p>
+
+                        <h4>画像</h4>
+                        <p id="sec5-havImage"></p>
+                    </div>
+                    <div class="item w50p">
+                        <h4>備考</h4>
+                        <p id="sec5-memo" class="w100p"></p>
+                    </div>
+                    <div class="item w15p offView onAdmin" id="sec5-formViewBtn">
+                        <input type="button" value="病歴データ追加" onclick="onViewForm('sec5','病歴','addMedicalHistoryForm');jsSec5.mkDiseaseNameOpt();" class="btn btn-info mb1e">
+                    </div>
+                </div>
+            </form>
+
+            <div id="sec5-msg"></div>
+
+            <div id="sec5-list-table">
+                <div class="list-view">
+                    <h2>入退院サマリー</h2>
+                    <div class="list-contents">
+                        <table class="table table-striped">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th rowspan="2">入院年月日</th>
+                                    <th rowspan="2">退院年月日</th>
+                                    <th rowspan="2">転科年月日</th>
+                                    <th rowspan="2">死亡年月日</th>
+                                    <th colspan="4">疾患名1</th>
+                                </tr>
+                                <tr>
+                                    <th>コード</th>
+                                    <th>疾患名</th>
+                                    <th>その他</th>
+                                    <th>部位</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sec5-medical-history-list1">
+                            </tbody>
+                        </table>
+                        <table>
+                            <tbody id="sec5-medical-history-detail">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="list-view">
+                    <h2>入退院データ</h2>
+                    <div class="list-contents" id="sec5-medical-history-selected">
+                    </div>
+                </div>
+
+                <div id="sec5-img-list">
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="item" id="addMedicalHistoryForm">
+            <form action="" id="addMedicalHistory">
+                <div class="item w15p offView onAdmin ml-auto">
+                    <input type="button" value="閉じる" onclick="onViewForm('sec5','病歴','addMedicalHistoryForm');jsSec5.mkDiseaseNameOpt();" class="btn btn-info mb1e">
+                </div>
+                <input type="hidden" name="sec5-entry-patientId" id="sec5-entry-patientId">
+                <input type="hidden" name="sec5-entry-lastName" id="sec5-entry-lastName">
+                
+                <div class="row form-item flex-ai-center">
+                    <div class="field-label">入院年月日</div>
+                    <div class="field-data">
+                        <input type="date" name="sec5-entry-dateOfHospitalization" id="sec5-entry-dateOfHospitalization">
+                    </div>
+                </div>
+                <div class="row form-item flex-ai-center">
+                    <div class="field-label">退院年月日</div>
+                    <div class="field-data">
+                        <input type="date" name="sec5-entry-dischargeDate" id="sec5-entry-dischargeDate">
+                    </div>
+                </div>
+                <div class="row form-item flex-ai-center">
+                    <div class="field-label">転科年月日</div>
+                    <div class="field-data">
+                        <input type="date" name="sec5-entry-transferDate" id="sec5-entry-transferDate">
+                    </div>
+                </div>
+                <div class="row form-item flex-ai-center">
+                    <div class="field-label">死亡年月日</div>
+                    <div class="field-data">
+                        <input type="date" name="sec5-entry-dateOfDeath" id="sec5-entry-dateOfDeath">
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>疾患名1</legend>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">疾患名</div>
+                        <div class="field-data">
+                            <input type="text" class="w10p" neme="sec5-entry-cd1" id="sec5-entry-cd1" readonly>
+                            <select class="w88p" name="sec5-entry-diseaseName1" id="sec5-entry-diseaseName1" onchange="jsSec5.selectDiseaseName('diseaseName',this);" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-item flex-wrap flex-ai-center">
+                        <div class="field-label">その他1</div>
+                        <div class="field-data">
+                            <input type="text" class="w100p" name="sec5-entry-etc1" id="sec5-entry-etc1">
+                        </div>
+                    </div>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">部位1</div>
+                        <div class="field-data">
+                            <select class="w100p" name="sec5-entry-part1" id="sec5-entry-part1" required>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>疾患名2</legend>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">疾患名</div>
+                        <div class="field-data">
+                            <input type="text" class="w10p" neme="sec5-entry-cd2" id="sec5-entry-cd2" readonly>
+                            <select class="w88p" name="sec5-entry-diseaseName2" id="sec5-entry-diseaseName2"
+                                onchange="jsSec5.selectDiseaseName('diseaseName',this);" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-item flex-wrap flex-ai-center">
+                        <div class="field-label">その他2</div>
+                        <div class="field-data">
+                            <input type="text" class="w100p" name="sec5-entry-etc2" id="sec5-entry-etc2">
+                        </div>
+                    </div>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">部位2</div>
+                        <div class="field-data">
+                            <select class="w100p" name="sec5-entry-part2" id="sec5-entry-part2" required>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>  
+
+                <fieldset>
+                    <legend>疾患名3</legend>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">疾患名</div>
+                        <div class="field-data">
+                            <input type="text" class="w10p" neme="sec5-entry-cd3" id="sec5-entry-cd3" readonly>
+                            <select class="w88p" name="sec5-entry-diseaseName3" id="sec5-entry-diseaseName3"
+                                onchange="jsSec5.selectDiseaseName('diseaseName',this);" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-item flex-wrap flex-ai-center">
+                        <div class="field-label">その他3</div>
+                        <div class="field-data">
+                            <input type="text" class="w100p" name="sec5-entry-etc3" id="sec5-entry-etc3">
+                        </div>
+                    </div>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">部位3</div>
+                        <div class="field-data">
+                            <select class="w100p" name="sec5-entry-part3" id="sec5-entry-part3" required>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>疾患名4</legend>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">疾患名</div>
+                        <div class="field-data">
+                            <input type="text" class="w10p" neme="sec5-entry-cd4" id="sec5-entry-cd4" readonly>
+                            <select class="w88p" name="sec5-entry-diseaseName4" id="sec5-entry-diseaseName4"
+                                onchange="jsSec5.selectDiseaseName('diseaseName',this);" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-item flex-wrap flex-ai-center">
+                        <div class="field-label">その他4</div>
+                        <div class="field-data">
+                            <input type="text" class="w100p" name="sec5-entry-etc4" id="sec5-entry-etc4">
+                        </div>
+                    </div>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">部位4</div>
+                        <div class="field-data">
+                            <select class="w100p" name="sec5-entry-part4" id="sec5-entry-part4" required>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+        
+                <fieldset>
+                    <legend>疾患名5</legend>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">疾患名</div>
+                        <div class="field-data">
+                            <input type="text" class="w10p" neme="sec5-entry-cd5" id="sec5-entry-cd5" readonly>
+                            <select class="w88p" name="sec5-entry-diseaseName5" id="sec5-entry-diseaseName5"
+                                onchange="jsSec5.selectDiseaseName('diseaseName',this);" required>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-item flex-wrap flex-ai-center">
+                        <div class="field-label">その他5</div>
+                        <div class="field-data">
+                            <input type="text" class="w100p" name="sec5-entry-etc5" id="sec5-entry-etc5">
+                        </div>
+                    </div>
+                    <div class="row form-item flex-ai-center">
+                        <div class="field-label">部位5</div>
+                        <div class="field-data">
+                            <select class="w100p" name="sec5-entry-part5" id="sec5-entry-part5" required>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+        
+                <div class="row">
+                    <input type="reset" value="リセット" class="w50p btn btn-secondary">
+                    <input type="button" value="データ追加" onclick="jsSec5.addMedicalHistoryList()" class="w50p btn btn-info">
+                </div>
+        
+            </form>
+        </div>
+    </div>
+
+    <div id="sec5-img-viewer">
+    </div>
+    <div id="sec5-confirm" class="confirm-style">
+        <p id="sec5-confirm-msg" class="mb1e"></p>
+        <div class="row mb0">
+            <form>
+                <input type="button" value="OK" id="sec5-agree-btn" class="w50p btn btn-info mb0">
+                <input type="button" value="キャンセル" id="sec5-cancel-btn" onclick="closeDialog('sec5-confirm');"
+                    class="w50p btn btn-secondary mb0">
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<div id="sec1">
+    <div class="flex-row">
+        <div class="item" id="sec1-main">
+            <form id="search-fields" onsubmit="return searchPatientList('#sec1-patient-list')">
+                <div class="row ai-center">
+                    <div class="item w10p">
+                        <h4>患者ID</h4>
+                        <input type="text" class="search-input" id="sec1-patientId">
+                    </div>
+                    <div class="item w15p">
+                        <h4>性</h4>
+                        <input type="text" class="search-input" id="sec1-lastName">
+                    </div>
+                    <div class="item w15p">
+                        <h4>名</h4>
+                        <input type="text" class="search-input" id="sec1-firstName">
+                    </div>
+                    <div class="item w15p">
+                        <h4>生年月日</h4>
+                        <input type="date" class="search-input" id="sec1-birthday">
+                    </div>
+                    <div class="item w10p">
+                        <h4>年齢</h4>
+                        <input type="text" class="search-input" id="sec1-age">
+                    </div>
+                    <div class="item w5p">
+                        <h4>月齢</h4>
+                        <select class="search-input" name="monthAge" id="sec1-monthAge">
+                            <option value="">--</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div class="item w15p">
+                        <h4>性別</h4>
+                        <div class="flex-row">
+                            <label class="flex-row flex-ai-center"><input type="radio" name="sex" value="女" id="sec1-sex">
+                                女性</label>
+                            <label class="flex-row flex-ai-center"><input type="radio" name="sex" value="男" id="sec2-sex">
+                                男性</label>
+                        </div>
+                    </div>
+                    <div class="item w15p">
+                        <h4>初診年月日</h4>
+                        <input type="date" class="search-input" id="sec1-firstVisitDate">
+                    </div>
+                </div>
+                
+                <div class="row ai-center">
+                    <div class="item w10p">
+                        <h4>画像</h4>
+                        <label class="flex-row flex-ai-center"><input type="checkbox" name="havImage" value="1" id="sec1-havImage">
+                            あり</label>
+                    </div>
+                    <div class="item w40p">
+                        <h4>診断名</h4>
+                        <select class="search-input" name="diagnosis1" id="diagnosis1">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="item w30p">
+                        <h4>部位</h4>
+                        <select class="search-input" name="part1" id="part1">
+                            <option value=""></option>
+                        </select>
+                    </div>
+                    <div class="item w20p">
+                        <input type="reset" value="リセット" class="w40p btn btn-secondary">
+                        <input type="submit" value="Search" id="sec1-search-btn" class="w40p btn btn-info">
+                    </div>
+                </div>
+            </form>
+            <div id="sec1-list-table" class="flex-row">
+                <div class="list-view scroll-view">
+                    <div class="list-view-header">
+                        <h2 class="mb0">患者一覧</h2>
+                        <form id="pickupFields" class="flex-row flex-wrap mb1e">
+                        </form>
+                    </div>
+                    <div id="list-count"></div>
+                    <div class="list-contents" id="sec1-patient-list">
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div id="sec1-img-list">
+        </div>
+    </div>
+    <div id="sec1-img-viewer">
+    </div>
+    <div id="sec1-confirm" class="confirm-style">
+        <p id="sec1-confirm-msg" class="mb1e"></p>
+        <div class="row mb0">
+            <form>
+                <input type="button" value="OK" id="sec1-agree-btn" onclick="closeDialog('sec1-confirm', 'sec1-wait-bg');"
+                    class="w100p btn btn-info mb0">
+            </form>
+        </div>
+    </div>
+    <div id="sec1-wait-bg" class="wait-bg"></div>
+</div>

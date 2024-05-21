@@ -1,0 +1,78 @@
+<div id="sec9">
+    <div id="contents">
+        <h2>システム環境設定</h2>
+        <form action="" onsubmit="return false;" id="master-fields">
+            <div class="row">
+                <div class="item">
+                    <h4 class="item">DBファイルパス</h4>
+                    <div class="item"><input type="text" id="dbFilePath"></div>
+                </div>
+                <div class="item">
+                    <h4 class="item">画像ファイルパス</h4>
+                    <div class="item"><input type="text" id="imgFilePath"></div>
+                </div>
+                <div class="item">
+                    <h4 class="item">病理PDFファイルパス1</h4>
+                    <div class="item"><input type="text" id="pdf1FilePath"></div>
+                </div>
+                <div class="item">
+                    <h4 class="item">手術PDFファイルパス2</h4>
+                    <div class="item"><input type="text" id="pdf2FilePath"></div>
+                </div>
+                <div class="item">
+                    <h4 class="item">病歴PDFファイルパス3</h4>
+                    <div class="item"><input type="text" id="pdf3FilePath"></div>
+                </div>
+            </div>
+            <div class="row flex-ai-center">
+                <div class="item">
+                    <div class="item"><input type="button" value="設定保存" onclick="jsSec9.masterEntry();" class="btn btn-secondary mb0"></div>
+                </div>
+                <div id="fin-msg"></div>
+            </div>
+        </form>
+        <div class="hidden-area">
+            <ul id="listing"></ul>
+            <ul class="nav">
+                <li><a href="#" class="btn btn-info" id="sec2-view" onclick="loadPage('sec2',true)">臨床(患者台帳)</a></li>
+                <!-- <li><a href="#" class="mn-item" id="fileDbUpdate" onclick="fileDbUpdate()">ファイルデータベース更新</a></li> -->
+            </ul>
+
+            <div class="row">
+                <div id="imgOutputListWrapper">
+                    <div id="sec9-img-output-msg">
+                        <!-- <button id="sec9-img-output-close" value="閉じる"></button> -->
+                    </div>
+                    <form action="" onsubmit="return false;" id="imgOutput-fields">
+                        <h2>イメージ出力リスト</h2>
+                        <p>
+                            <textarea name="imgOutputList" id="imgOutputList" cols="30" rows="10" class="w100p"></textarea>
+                        </p>
+                        <div class="flex-row">
+                            <input type="reset" value="クリア" class="w50p btn btn-secondary mb0">
+                            <input type="button" value="出力" onclick="desableOpration('sec9',imgOutputList.value);" class="w50p btn btn-info mb0">
+                        </div>
+                    </form>
+                </div>
+                <div id="imgCheckExec" class="ml50">
+                    <form action="" onsubmit="return false;" id="imgOutput-fields">
+                        <h2>イメージDB同期処理</h2>
+                        <div class="flex-row">
+                            <input type="button" value="同期開始" onclick="jsSec9.desableOprationSec9();" class="w100p btn btn-info mb0">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div id="sec9-confirm" class="confirm-style">
+        <p id="sec9-confirm-msg" class="mb1e"></p>
+        <div class="row mb0">
+            <form>
+                <input type="button" value="OK" id="sec9-agree-btn" onclick="closeDialog('sec9-confirm', 'sec9-wait-bg');" class="w100p btn btn-info mb0">
+            </form>
+        </div>
+    </div>
+    <div id="sec9-wait-bg" class="wait-bg"></div>
+</div>

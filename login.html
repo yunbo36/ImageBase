@@ -1,0 +1,26 @@
+<div id="login">
+    <div class="row mt10p">
+        <div class="col-md-3"></div>
+        <div id="login-inner-contents" class="col-md-6">
+            <form action="" onsubmit="return loginCheck()">
+                <h2>ImageBase ログイン</h2>
+                <p id="msgArea" class="mb1e"></p>
+                <label for="ids">
+                    <span>ID</span>
+                    <input type="text" id="ids" name="ids">
+                </label>
+                <label for="passwd">
+                    <span>PASSWORD</span>
+                    <input type="password" id="passwd" name="passwd">
+                </label>
+                <label for="saveId" id="saveIdWrap">
+                    <input type="checkbox" id="saveId" name="saveId">次回IDの入力を省略する
+                </label>
+                <p class="item">
+                    <input type="submit" class="btn btn-info" value="ログイン">
+                </p>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

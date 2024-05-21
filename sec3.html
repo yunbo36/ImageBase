@@ -1,0 +1,135 @@
+<div id="sec3">
+    <div class="row">
+        <div class="item w100p" id="sec3-contents">
+            <form id="search-fields" onsubmit="return jsSec3.searchByori();">
+                <div class="row">
+                    <div class="item w15p">
+                        <h4>患者ID</h4>
+                        <input type="text" class="inp-data" id="sec3-patientId" tabindex="0">
+                        <input type="submit" value="Search" id="sec3-search-btn" class="btn btn-info">
+                    </div>
+                    <div class="item w15p">
+                        <h4>性</h4>
+                        <p id="sec3-lastName"></p>
+                    </div>
+                    <div class="item w15p">
+                        <h4>名</h4>
+                        <p id="sec3-firstName"></p>
+                    </div>
+                    <div class="item w12p">
+                        <h4>生年月日</h4>
+                        <p id="sec3-birthday"></p>
+                    </div>
+                    <div class="item w10p">
+                        <h4>年齢</h4>
+                        <p id="sec3-age"></p>
+                    </div>
+                    <div class="item w15p">
+                        <h4>月齢</h4>
+                        <p id="sec3-monthAge"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item w15p">
+                        <h4>性別</h4>
+                        <p id="sec3-sex"></p>
+
+                        <h4>画像</h4>
+                        <p id="sec3-havImage"></p>
+                    </div>
+                    <div class="item w50p">
+                        <h4>備考</h4>
+                        <p id="sec3-memo" class="w100p"></p>
+                    </div>
+                    <div class="item w15p offView onAdmin" id="sec3-formViewBtn">
+                        <input type="button" value="病理データ追加" onclick="onViewForm()" class="btn btn-info mb1e">
+                    </div>
+                </div>
+            </form>
+
+            <div id="sec3-msg"></div>
+
+            <div id="sec3-list-table">
+                <form action="">
+                    <div class="list-view">
+                        <h2>病理診断名</h2>
+                        <div class="list-contents" id="sec3-byori-list1">
+
+                        </div>
+                    </div>
+                    <div class="list-view">
+                        <h2>病理確定診断名</h2>
+                        <div class="list-contents" id="sec3-byori-list2">
+
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+
+        <div class="item" id="addByoriForm">
+            <form action="" id="addByori">
+                <div class="item w15p ml-auto">
+                    <input type="button" value="閉じる" onclick="onViewForm()" class="btn btn-info mb1e">
+                </div>
+                <input type="hidden" name="sec3-entry-patientId" id="sec3-entry-patientId">
+                <input type="hidden" name="sec3-entry-lastName" id="sec3-entry-lastName">
+                <div class="row form-item">
+                    <div class="field-label">種別</div>
+                    <div class="field-data">
+                        <select name="sec3-add-tbl" id="sec3-add-tbl" onchange="jsSec3.selKakuteiCheck();">
+                            <option value="tbl_byoriShindan">病理診断名</option>
+                            <option value="tbl_byoriKakutei">病理確定診断名</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-item">
+                    <div class="field-label">年</div>
+                    <div class="field-data">
+                        <select name="sec3-entry-year" id="sec3-entry-year">
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-item">
+                    <div class="field-label">病理No</div>
+                    <div class="field-data">
+                        <input type="text" name="sec3-entry-byoriNo" id="sec3-entry-byoriNo">
+                    </div>
+                </div>
+                <div class="row form-item">
+                    <div class="field-label">皮No</div>
+                    <div class="field-data">
+                        <input type="text" name="sec3-entry-skinNo" id="sec3-entry-skinNo">
+                    </div>
+                </div>
+                <div class="row form-item" id="sec3-entry-biopsyDate-wrap">
+                    <div class="field-label">採取日</div>
+                    <div class="field-data">
+                        <input type="date" name="sec3-entry-biopsyDate" id="sec3-entry-biopsyDate">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <input type="reset" value="リセット" class="w50p btn btn-secondary" onclick="document.getElementById('sec3-entry-biopsyDate-wrap').style.display='flex';">
+                    <input type="button" value="データ追加" onclick="jsSec3.addByoriList()" class="w50p btn btn-info">
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div id="sec3-img-list">
+    </div>
+    <div id="sec3-img-viewer">
+    </div>
+    <div id="sec3-confirm" class="confirm-style">
+        <p id="sec3-confirm-msg" class="mb1e"></p>
+        <div class="row mb0">
+            <form>
+                <input type="button" value="OK" id="sec3-agree-btn" class="w50p btn btn-info mb0">
+                <input type="button" value="キャンセル" id="sec3-cancel-btn" onclick="closeDialog('sec3-confirm');" class="w50p btn btn-secondary mb0">
+            </form>
+        </div>
+    </div>
+</div>

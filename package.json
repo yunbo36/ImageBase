@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^8.0.0",
+    "fs-extra": "^10.0.0",
+    "install": "^0.13.0",
+    "jquery": "^3.6.0",
+    "npm": "^7.20.6",
+    "sqlite3": "^5.0.2"
+  },
+  "name": "app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^24.0.0",
+    "electron-builder": "^23.6.0",
+    "electron-rebuild": "^3.1.1",
+    "file-type": "^16.5.3",
+    "fs-extra": "^10.0.0"
+  }
+}

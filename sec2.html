@@ -1,0 +1,91 @@
+<div id="sec2">
+    <form id="search-fields">
+        <div class="row">
+            <div class="item w15p">
+                <h4>患者ID</h4>
+                <input type="text" class="inp-data" id="sec2-patientId" required>
+                <input type="button" value="Search" id="sec2-search-btn" onclick="jsSec2.searchPatient()" class="btn btn-info">
+            </div>
+            <div class="item w15p">
+                <h4>性</h4>
+                <input type="text" class="inp-data" id="sec2-lastName" required>
+            </div>
+            <div class="item w15p">
+                <h4>名</h4>
+                <input type="text" class="inp-data" id="sec2-firstName" required>
+            </div>
+            <div class="item w15p">
+                <h4>生年月日</h4>
+                <input type="date" class="inp-data" id="sec2-birthday">
+            </div>
+            <div class="item w10p">
+                <h4>年齢</h4>
+                <input type="text" class="inp-data" id="sec2-age">
+            </div>
+            <div class="item w15p">
+                <h4>月齢</h4>
+                <input type="text" class="inp-data" id="sec2-monthAge">
+            </div>
+        </div>
+        <div class="row">
+            <div class="item w15p">
+                <h4>初診年月日</h4>
+                <input type="date" class="inp-data" id="sec2-firstVisitDate">
+
+                <h4>性別</h4>
+                <div class="radio-wrap">
+                    <label><input type="radio" class="sel-data" name="sec2-sex" value="男" id="sec2-sex1" checked="checked">
+                    男性</label>
+                    <label><input type="radio" class="sel-data" name="sec2-sex" value="女" id="sec2-sex2">
+                    女性</label>
+                </div>
+
+                <h4>画像</h4>
+                <label><input type="checkbox" name="havImage" class="sel-data" value="1" id="sec2-havImage">
+                    あり</label>
+            </div>
+            <div class="item w50p">
+                <h4>備考</h4>
+                <textarea name="memo" id="sec2-memo" cols="30" rows="10" class="w100p"></textarea>
+            </div>
+            <div class="item onAdmin">
+                <h4>操作</h4>
+                <input type="button" class="btn btn-info mb1e" onclick="jsSec2.addPatient('sec2');" value="追加" id="addPatient"><input type="button" class="btn btn-info mb1e" onclick="orgConfirm('sec2','更新を行います</br>よろしければOKを押してください','jsSec2.updPatient');" value="更新" id="updPatient"><input type="button" class="btn btn-danger mb1e" onclick="orgConfirm('sec2','患者を削除します。</br>操作に間違いがなければ「OK」を押してください。','jsSec2.delPatient');" value="削除" id="delPatient">
+            </div>
+        </div>
+    </form>
+    <div id="sec2-msg"></div>
+    <div id="sec2-list-table">
+        <div class="list-view">
+            <h2>新患診断名</h2>
+            <div id="rinsho-msg"></div>
+            <div class="list-contents" id="sec2-rinsho-list">
+            </div>
+        </div>
+        <div class="list-view">
+            <h2>確定診断名</h2>
+            <div id="kakutei-msg"></div>
+            <div class="list-contents" id="sec2-kakutei-list">
+            </div>
+        </div>
+        <datalist id="diag-list">
+        </datalist>
+        <datalist id="part-list">
+        </datalist>
+
+        <div id="sec2-img-list">
+        </div>
+
+    </div>
+    <div id="img-viewer">
+    </div>
+    <div id="sec2-confirm" class="confirm-style">
+        <p id="sec2-confirm-msg" class="mb1e"></p>
+        <div class="row mb0">
+            <form>
+                <input type="button" value="OK" id="sec2-agree-btn" class="w50p btn btn-info mb0" onclick="closeDialog('sec2-confirm')">
+                <input type="button" value="キャンセル" id="sec2-cancel-btn" onclick="closeDialog('sec2-confirm');" class="w50p btn btn-secondary mb0">
+            </form>
+        </div>
+    </div>
+</div>
