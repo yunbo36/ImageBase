@@ -1,0 +1,34 @@
+name: Build Electron App
+
+on:
+  push:
+    branches:
+      - main  # mainブランチにプッシュされたときに動作
+  pull_request:
+    branches:
+      - main  # mainブランチへのプルリクエストが作成されたときに動作
+
+jobs:
+  build:
+    runs-on: windows-latest  # Windows環境で実行
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # GitHubリポジトリからコードを取得
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'  # Node.jsのバージョンを指定
+
+      - name: Install dependencies
+        run: npm install  # プロジェクトの依存関係をインストール
+
+      - name: Build the Electron app
+        run: npm run build -- --win  # Windows用にビルドを実行
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: ElectronApp-win
+          path: dist/  # ビルド成果物をアップロード
