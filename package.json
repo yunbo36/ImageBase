@@ -6,18 +6,27 @@
     "install": "^0.13.0",
     "jquery": "^3.6.0",
     "npm": "^7.20.6",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.1.7"
   },
-  "name": "app",
+  "name": "imagebase",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "postinstall": "install-app-deps",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "electron-builder"
   },
   "author": "",
   "license": "ISC",
   "description": "",
+  "build": {
+    "appId": "com.example.app",
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  },
   "devDependencies": {
     "electron": "^24.0.0",
     "electron-builder": "^23.6.0",

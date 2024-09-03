@@ -1,16 +1,18 @@
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
     <title>Image Base</title>
     <link rel="stylesheet" href="./css/screen.css">
 </head>
+
 <body>
 
     <nav id="main-nav">
@@ -29,80 +31,80 @@
     <!-- <div><a href="javascript.void(0)" onclick="subwin.loadFile('login.html');">click</a></div> -->
     <script src="./assets/js/main.js"></script>
     <script src="./assets/js/sec1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="./assets/js/vue.min.js"></script>
     <script src="./assets/js/config.js"></script>
     <script src="./assets/js/php_date.js"></script>
     <script>
-    let rinshoList, byoriList, imgList, imgView, listTable;
-    window.jQuery = window.$ = require('jquery');
+        let rinshoList, byoriList, imgList, imgView, listTable;
+        window.jQuery = window.$ = require('jquery');
 
-    filePathLink = [];
-    dbpath = localStorage.getItem('dbPath');
-    imgpath = localStorage.getItem('imgPath');
-    filePathLink[0] = imgpath;
-    pdf1path = localStorage.getItem('pdf1Path');
-    filePathLink[1] = pdf1path;
-    pdf2path = localStorage.getItem('pdf2Path');
-    filePathLink[2] = pdf2path;
-    pdf3path = localStorage.getItem('pdf3Path');
-    filePathLink[3] = pdf3path;
+        filePathLink = [];
+        dbpath = localStorage.getItem('dbPath');
+        imgpath = localStorage.getItem('imgPath');
+        filePathLink[0] = imgpath;
+        pdf1path = localStorage.getItem('pdf1Path');
+        filePathLink[1] = pdf1path;
+        pdf2path = localStorage.getItem('pdf2Path');
+        filePathLink[2] = pdf2path;
+        pdf3path = localStorage.getItem('pdf3Path');
+        filePathLink[3] = pdf3path;
 
-    loginUser = sessionStorage.getItem('loginUser');
-    if (!loginUser) {
-        if (dbpath == null || imgpath == null) {
-            // if (!loginUser) {
-            let promise = new Promise((resolve, reject) => { // #1
-                resolve(loadHTML('sec9.html', '#container', 'empty'));
-            }).then((load) => {
-                return new Promise((resolve, reject) => {
-                    sec = 'sec1';
-                    $("#main-nav").css("display", "none");
-                    $(".hidden-area").css("display","none");
-                    firstLoad(sec);
+        loginUser = sessionStorage.getItem('loginUser');
+        if (!loginUser) {
+            if (dbpath == null || imgpath == null) {
+                let promise = new Promise((resolve, reject) => { // #1
+                    resolve(loadHTML('sec9.html', '#container', 'empty'));
+                }).then((load) => {
+                    return new Promise((resolve, reject) => {
+                        sec = 'sec1';
+                        $("#main-nav").css("display", "none");
+                        $(".hidden-area").css("display", "none");
+                        firstLoad(sec);
+                    });
                 });
-            });
+            }
+            else {
+                let promise = new Promise((resolve, reject) => { // #1
+                    resolve(loadHTML('login.html', '#container', 'empty'));
+                }).then((load) => {
+                    return new Promise((resolve, reject) => {
+                        resolve(loadHTML('sec9.html', '#container', 'append'));
+                    });
+                }).then((load) => {
+                    return new Promise((resolve, reject) => {
+                        sec = 'login';
+                        document.getElementById("main-nav").style.display = "none";
+                        firstLoad(sec);
+                    });
+                }).then((load) => {
+                    document.getElementById("ids").focus();
+                });
+            }
         }
-        else {
-            let promise = new Promise((resolve, reject) => { // #1
-                resolve(loadHTML('login.html', '#container', 'empty'));
-            }).then((load) => {
-                return new Promise((resolve, reject) => {
-                    resolve(loadHTML('sec9.html', '#container', 'append'));
-                });
-            }).then((load) => {
-                return new Promise((resolve, reject) => {
-                    sec = 'login';
-                    document.getElementById("main-nav").style.display = "none";
-                    firstLoad(sec);
-                });
-            }).then((load) => {
-                document.getElementById("ids").focus();
-            });
-        }
-    }
 
-    $(document).ready(function() {
-        setTimeout(() => {
-            if (dbpath == "" || imgpath == "") {
-                loadPage("sec9");
-            }
-            if(dbpath) {
-                document.querySelector("#dbFilePath").value = dbpath;
-            }
-            if(imgpath) {
-                document.querySelector("#imgFilePath").value = imgpath;
-            }
-            if(pdf1path) {
-                document.querySelector("#pdf1FilePath").value = pdf1path;
-            }
-            if(pdf2path) {
-                document.querySelector("#pdf2FilePath").value = pdf2path;
-            }
-            if(pdf3path) {
-                document.querySelector("#pdf3FilePath").value = pdf3path;
-            }
-        }, 1000);
-    });
-</script>
+        $(document).ready(function () {
+            setTimeout(() => {
+                if (dbpath == "" || imgpath == "") {
+                    loadPage("sec9");
+                }
+                if (dbpath) {
+                    document.querySelector("#dbFilePath").value = dbpath;
+                }
+                if (imgpath) {
+                    document.querySelector("#imgFilePath").value = imgpath;
+                }
+                if (pdf1path) {
+                    document.querySelector("#pdf1FilePath").value = pdf1path;
+                }
+                if (pdf2path) {
+                    document.querySelector("#pdf2FilePath").value = pdf2path;
+                }
+                if (pdf3path) {
+                    document.querySelector("#pdf3FilePath").value = pdf3path;
+                }
+            }, 1000);
+        });
+    </script>
 </body>
+
 </html>
